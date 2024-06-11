@@ -8,27 +8,27 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>test1 | 刘辉的博客</title>
+  <title>Flask学习笔记（一） | 刘辉的博客</title>
 
   <link rel="shortcut icon" href="../../../../images/favicon.png">
   <link rel="alternate" href="../../../../atom.xml" title="刘辉的博客" type="application/atom+xml">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="test1">
-<meta property="og:url" content="https://xiamu9527.cn/2024/06/07/test1/index.html">
+  <meta name="description" content="Flask框架简介 Flask是一个非常小的PythonWeb框架，被称为微型框架；只提供了一个稳健的核心，其他功能全部是通过扩展实现的；意思就是我们可以根据项目的需要量身定制，也意味着我们需要学习各种扩展库的使用。  框架结构简介1234567891011121314151617181920from flask import Flask# 用当前脚本名称实例化Flask对象，方便flask从该脚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask学习笔记（一）">
+<meta property="og:url" content="https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="刘辉的博客">
+<meta property="og:description" content="Flask框架简介 Flask是一个非常小的PythonWeb框架，被称为微型框架；只提供了一个稳健的核心，其他功能全部是通过扩展实现的；意思就是我们可以根据项目的需要量身定制，也意味着我们需要学习各种扩展库的使用。  框架结构简介1234567891011121314151617181920from flask import Flask# 用当前脚本名称实例化Flask对象，方便flask从该脚">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xiamu9527.cn/2024/06/07/test1/index/image-20240607175717198.png">
-<meta property="article:published_time" content="2024-06-07T08:50:15.000Z">
-<meta property="article:modified_time" content="2024-06-07T09:57:18.777Z">
+<meta property="article:published_time" content="2024-06-11T02:41:44.000Z">
+<meta property="article:modified_time" content="2024-06-11T03:29:56.966Z">
 <meta property="article:author" content="刘辉">
-<meta property="article:tag" content="测试">
+<meta property="article:tag" content="后端 Web Flask">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiamu9527.cn/2024/06/07/test1/index/image-20240607175717198.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="">
-  <meta name="keywords" content=",测试">
+  <meta name="keywords" content=",后端 Web Flask">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="刘辉的博客">
@@ -40,8 +40,8 @@
   <link rel="apple-touch-icon" href="../../../../images/favicon.png">
 
   
-    <meta property="article:published_time" content="Fri Jun 07 2024 16:50:15 GMT+0800">
-    <meta property="article:modified_time" content="Fri Jun 07 2024 17:57:18 GMT+0800">
+    <meta property="article:published_time" content="Tue Jun 11 2024 10:41:44 GMT+0800">
+    <meta property="article:modified_time" content="Tue Jun 11 2024 11:29:56 GMT+0800">
   
 
   
@@ -135,7 +135,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试<span class="mdui-ripple sidebar_archives-none-count">1</span></a>
+        <a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E5%90%8E%E7%AB%AF-Web-Flask/" rel="tag">后端 Web Flask<span class="mdui-ripple sidebar_archives-none-count">1</span></a>
         
       </div>
     </div>
@@ -174,11 +174,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-7.png" style="max-height: 240px;">
+      <img src="/images/random/material-1.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">test1</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2024-06-07 / <i class="iconfont">&#xe601;</i> 刘辉</div>
+          <div class="mdui-card-primary-title">Flask学习笔记（一）</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2024-06-11 / <i class="iconfont">&#xe601;</i> 刘辉</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -190,7 +190,7 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=https://xiamu9527.cn/2024/06/07/test1/index.html">
+                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
               
             </li>
           </ul>
@@ -199,43 +199,56 @@
           <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
           <ul class="mdui-menu" id="share_menu">
             <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=test1&url=https://xiamu9527.cn/2024/06/07/test1/index.html&pic=https://xiamu9527.cn../../../../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Flask学习笔记（一）&url=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html&pic=https://xiamu9527.cn../../../../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=test1&url=https://xiamu9527.cn/2024/06/07/test1/index.html&via=刘辉" target="_blank" class="mdui-ripple">分享到Twitter</a>
+              <a href="https://twitter.com/intent/tweet?text=Flask学习笔记（一）&url=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html&via=刘辉" target="_blank" class="mdui-ripple">分享到Twitter</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://xiamu9527.cn/2024/06/07/test1/index.html" target="_blank" class="mdui-ripple">分享到Facebook</a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到Facebook</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=https://xiamu9527.cn/2024/06/07/test1/index.html" target="_blank" class="mdui-ripple">分享到Google+</a>
+              <a href="https://plus.google.com/share?url=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到Google+</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://xiamu9527.cn/2024/06/07/test1/index.html&title=test1" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html&title=Flask学习笔记（一）" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=刘辉的博客&title=test1&summary=&pics=https://xiamu9527.cn../../../../images/favicon.png&url=https://xiamu9527.cn/2024/06/07/test1/index.html" target="_blank" class="mdui-ripple">分享到QQ</a>
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=刘辉的博客&title=Flask学习笔记（一）&summary=&pics=https://xiamu9527.cn../../../../images/favicon.png&url=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到QQ</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=https://xiamu9527.cn/2024/06/07/test1/index.html&text=test1" target="_blank" class="mdui-ripple">分享到Telegram</a>
+              <a href="https://telegram.me/share/url?url=https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html&text=Flask学习笔记（一）" target="_blank" class="mdui-ripple">分享到Telegram</a>
             </li>
           </ul>
         
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <p><img src="/2024/06/07/test1/index/image-20240607175717198.png" alt="image-20240607175717198"></p>
+      <h3 id="Flask框架简介"><a href="#Flask框架简介" class="headerlink" title="Flask框架简介"></a>Flask框架简介</h3><blockquote>
+<p>Flask是一个非常小的PythonWeb框架，被称为微型框架；只提供了一个稳健的核心，其他功能全部是通过扩展实现的；意思就是我们可以根据项目的需要量身定制，也意味着我们需要学习各种扩展库的使用。</p>
+</blockquote>
+<h3 id="框架结构简介"><a href="#框架结构简介" class="headerlink" title="框架结构简介"></a>框架结构简介</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用当前脚本名称实例化Flask对象，方便flask从该脚本文件中获取需要的内容</span></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment">#程序实例需要知道每个url请求所对应的运行代码是谁。</span></span><br><span class="line"><span class="comment">#所以程序中必须要创建一个url请求地址到python运行函数的一个映射。</span></span><br><span class="line"><span class="comment">#处理url和视图函数之间的关系的程序就是&quot;路由&quot;，在Flask中，路由是通过@app.route装饰器(以@开头)来表示的</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="comment">#url映射的函数，要传参则在上述route（路由）中添加参数申明</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 直属的第一个作为视图函数被绑定，第二个就是普通函数</span></span><br><span class="line"><span class="comment"># 路由与视图函数需要一一对应</span></span><br><span class="line"><span class="comment"># def not():</span></span><br><span class="line"><span class="comment">#     return &quot;Not Hello World!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动一个本地开发服务器，激活该网页</span></span><br><span class="line">app.run()</span><br></pre></td></tr></table></figure>
+
+<h3 id="不同请求类型的接口"><a href="#不同请求类型的接口" class="headerlink" title="不同请求类型的接口"></a>不同请求类型的接口</h3><ul>
+<li>GET</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    username = request.args.get(<span class="string">&#x27;username&#x27;</span>)</span><br><span class="line">    password = request.args.get(<span class="string">&#x27;password&#x27;</span>)</span><br><span class="line">    authenticated_user = authenticate(username, password)</span><br><span class="line">    <span class="keyword">if</span> authenticated_user:</span><br><span class="line">        token = create_token(authenticated_user)</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;<span class="string">&#x27;token&#x27;</span>: token&#125;)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;<span class="string">&#x27;error&#x27;</span>: <span class="string">&#x27;用户名或密码错误&#x27;</span>&#125;), <span class="number">401</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       <blockquote class="mdui-m-t-5">
         
-        <strong>本文链接：</strong><a href="https://xiamu9527.cn/2024/06/07/test1/index.html">https://xiamu9527.cn/2024/06/07/test1/index.html</a>
+        <strong>本文链接：</strong><a href="https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">https://xiamu9527.cn/2024/06/11/Flask%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html</a>
       </blockquote>
       
     </div>
     <footer class="mdui-card-actions">
       
       
-        <a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a>
+        <a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E5%90%8E%E7%AB%AF-Web-Flask/" rel="tag">后端 Web Flask</a>
       
     </footer>
     
