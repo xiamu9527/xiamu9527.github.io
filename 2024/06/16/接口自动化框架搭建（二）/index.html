@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>接口自动化框架搭建（二） | 刘辉的博客</title>
+
+  <link rel="shortcut icon" href="../../../../images/favicon.png">
+  <link rel="alternate" href="../../../../atom.xml" title="刘辉的博客" type="application/atom+xml">
+  <meta name="description" content="在上一节中完成了接口的基本调试，接下来需要根据响应来做断言 2.2、断言封装123456789101112131415161718192021222324252627282930313233343536373839def assert_json_path(param, step_assert):    &quot;&quot;&quot;    断言jsonpath    :param param">
+<meta property="og:type" content="article">
+<meta property="og:title" content="接口自动化框架搭建（二）">
+<meta property="og:url" content="https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="刘辉的博客">
+<meta property="og:description" content="在上一节中完成了接口的基本调试，接下来需要根据响应来做断言 2.2、断言封装123456789101112131415161718192021222324252627282930313233343536373839def assert_json_path(param, step_assert):    &quot;&quot;&quot;    断言jsonpath    :param param">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-16T13:22:28.000Z">
+<meta property="article:modified_time" content="2024-06-17T02:42:05.686Z">
+<meta property="article:author" content="刘辉">
+<meta property="article:tag" content=" 测试 ">
+<meta property="article:tag" content=" 自动化测试 ">
+<meta property="article:tag" content=" 接口 ">
+<meta name="twitter:card" content="summary">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content=", 测试 , 自动化测试 , 接口 ">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="刘辉的博客">
+  <meta name="msapplication-starturl" content="https://xiamu9527.cn">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="刘辉的博客">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="../../../../images/favicon.png">
+
+  
+    <meta property="article:published_time" content="Sun Jun 16 2024 21:22:28 GMT+0800">
+    <meta property="article:modified_time" content="Mon Jun 17 2024 10:42:05 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="https://xiamu9527.cn">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="../../../../css/mdui.css">
+<link rel="stylesheet" href="../../../../css/style.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="../../../../index.html" class="mdui-typo-headline">刘辉的博客</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="../../../../atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="../../../../search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="../../../../images/banner.png" style="height: 160px;">
+    <img src="../../../../images/avatar.jpeg" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">刘辉</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:xiamu9527@outlook.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'xiamu9527@outlook.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="../../../../index.html" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../../../../archives/2024/06/">六月 2024<span class="mdui-ripple sidebar_archives-count">3</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../../../../categories/%E5%BC%80%E5%8F%91/">开发<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../../../../categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/Flask/" rel="tag"> Flask <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/Web/" rel="tag"> Web <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E5%90%8E%E7%AB%AF/" rel="tag"> 后端 <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E6%8E%A5%E5%8F%A3/" rel="tag"> 接口 <span class="mdui-ripple sidebar_archives-none-count">2</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E6%B5%8B%E8%AF%95/" rel="tag"> 测试 <span class="mdui-ripple sidebar_archives-none-count">2</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"> 自动化测试 <span class="mdui-ripple sidebar_archives-none-count">2</span></a>
+        
+      </div>
+    </div>
+    <a href="../../../../about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-8.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">接口自动化框架搭建（二）</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2024-06-16 / <i class="iconfont">&#xe601;</i> 刘辉</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAE0UlEQVR42u3ay27bQBAEQP3/TyfXXEj19CwhOS6eDIHaR1GAhz37+uNaXC8E+PDhw+fChw8fPhc+fD+E7xVf9/dfjfnvJ/kIV9+6Gn+6tm7v+PDhw4cP3ym+N/+qb6ecfuvqziuszRru75/uHR8+fPjw4TvLl0xzj5IATbcxLYPuv9WNgw8fPnz48H2KL9leFHnny41jhW5kfPjw4cOH75v5pvF6F/1P4/gpOj58+PDhw/cNfIPAuoq8kxginyUfLS96Hu914MOHDx8+fNUBtf/p7w+c78OHDx8+fL+Yr7umhUh+NG0aQOTthLxYebN3fPjw4cOHb8E3DcSTg19dA7u7OqauZY4PHz58+PCd4usWlEB0d56KMzbjl2E9Pnz48OHDF/N1/8i7oqFrZneH5/L14MOHDx8+fE/z5QPl5ct0tC7670KE+x9BNDs+fPjw4cO35usKgn0InrcBuhgiKYbGLQd8+PDhw4dvwZdP2UUMXSM8DxG68msaRuDDhw8fPnxP8E0Lmvy1f1oe5WVT96jysKDsdeDDhw8fPnwxX146dC/t0xInD9Nz+ukK8eHDhw8fvlN8ybUpSs42yLsZ87mih4cPHz58+PCt+boiY/P59MHsC45p6z2KDPDhw4cPH76Kbxq775c4fUjdwbK8JBqsFh8+fPjw4Vvz5S/qedGzeS3PZ+xa75sHiQ8fPnz48D3NNy0jkq3ug/WEuIse8OHDhw8fvuf48kNd99vYxwqbSH3/qAalGD58+PDhw3eIb19kTMuOfIRTLYF8rnHhgg8fPnz48A0jg+mL9BPN7E2RlAf9m7nw4cOHDx++Dd++7EgazHkgvpnrbAPgQGSADx8+fPjwxW3yvHDZbGYT9J+KBpJd48OHDx8+fGf5uhg9L1yS1/hNCZU3/vez4MOHDx8+fBu+TeA+5Zu+0p8dOd/dm/Xgw4cPHz58h/imL//TZvO0lEli9C4ymP5o8OHDhw8fvif4pke78jC9K03yoD8vWboCCB8+fPjw4XuC71Th0kXq+QaSuH+P+7G6Dx8+fPjw/TK+LhDPp58G8XlB0z3U6Zj48OHDhw/fhu9Uw7srF6bH3abRw75Ee1O44MOHDx8+fAu+s3DTF/scq2uNTw+oRZEBPnz48OHDt+DLG+RJKdC98J+KMKaflAfU8OHDhw8fvoqva2B38XoerN+vYRrEdxEJPnz48OHD9wRfN9y+yb0vd/YtgWTl+PDhw4cP3ym+/MuDCRYt7XzG5M5khdMx8eHDhw8fvg1ft9Apa0fZlRfdCgfrwYcPHz58+A7xdUXMtPmdX/s4oAv03zxsfPjw4cOHb8HXNbynYcG0Nb45mpajlC0EfPjw4cOHb8HXFRP5sbZTY24aAKca+fjw4cOHD9+e78A/8mAz+Z3TA3Dd55tWPT58+PDhw7fnywuLLjiYtqLzQiQpg6breTMaPnz48OHDd4iva3hPN/k6dCWzbKKByx8TPnz48OHD9yG+pPmdLH1aHm3a59O44cHCBR8+fPjw4TsU0OcRwDSMyGOF/XG6y13gw4cPHz58h/jyEiQpApJP8nG6ICC5czoOPnz48OHDt+c7e0AtD9bzGbs4Y3pntF98+PDhw4dvweeaXvjw4cOHz4UPHz58Lnz4vvj6Cxw7Q2GnmXsFAAAAAElFTkSuQmCC">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=接口自动化框架搭建（二）&url=https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html&pic=https://xiamu9527.cn../../../../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=接口自动化框架搭建（二）&url=https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html&via=刘辉" target="_blank" class="mdui-ripple">分享到Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html&title=接口自动化框架搭建（二）" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=刘辉的博客&title=接口自动化框架搭建（二）&summary=&pics=https://xiamu9527.cn../../../../images/favicon.png&url=https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html&text=接口自动化框架搭建（二）" target="_blank" class="mdui-ripple">分享到Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>在上一节中完成了接口的基本调试，接下来需要根据响应来做断言</p>
+<h3 id="2-2、断言封装"><a href="#2-2、断言封装" class="headerlink" title="2.2、断言封装"></a>2.2、断言封装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">assert_json_path</span>(<span class="params">param, step_assert</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    断言jsonpath</span></span><br><span class="line"><span class="string">    :param param:</span></span><br><span class="line"><span class="string">    :param step_assert:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 验证输入参数的类型和结构</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(param, <span class="built_in">dict</span>) <span class="keyword">or</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(step_assert, <span class="built_in">dict</span>):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;参数类型错误，param和step_assert都应为字典类型&quot;</span>)</span><br><span class="line"></span><br><span class="line">    result_cache = &#123;&#125;  <span class="comment"># 用于缓存jsonpath查询结果</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> step_assert.items():</span><br><span class="line">        <span class="keyword">for</span> key1, value1 <span class="keyword">in</span> value.items():</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="comment"># 使用缓存结果或进行查询</span></span><br><span class="line">                result = result_cache.get(key, jsonpath.jsonpath(param, key))</span><br><span class="line">                result_cache[key] = result  <span class="comment"># 更新缓存</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># 分别处理不同的断言</span></span><br><span class="line">                <span class="keyword">if</span> key1 == <span class="string">&#x27;is_not_null&#x27;</span>:</span><br><span class="line">                    <span class="keyword">assert</span> result, <span class="string">f&quot;<span class="subst">&#123;key&#125;</span> 的结果为 None，预期非空&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> key1 == <span class="string">&#x27;in&#x27;</span>:</span><br><span class="line">                    <span class="keyword">assert</span> value1 <span class="keyword">in</span> result, <span class="string">f&quot;<span class="subst">&#123;value1&#125;</span> 不在 <span class="subst">&#123;key&#125;</span> 的结果中&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> key1 == <span class="string">&#x27;eq&#x27;</span>:</span><br><span class="line">                    <span class="comment"># 确保结果非空</span></span><br><span class="line">                    <span class="keyword">if</span> result:</span><br><span class="line">                        <span class="keyword">assert</span> value1 == result[<span class="number">0</span>], <span class="string">f&quot;<span class="subst">&#123;value1&#125;</span> 不等于 <span class="subst">&#123;key&#125;</span> 的第一个结果&quot;</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">assert</span> <span class="literal">False</span>, <span class="string">f&quot;<span class="subst">&#123;key&#125;</span> 的结果为空，无法进行等于比较&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> key1 == <span class="string">&#x27;not_in&#x27;</span>:</span><br><span class="line">                    <span class="keyword">assert</span> value1 <span class="keyword">not</span> <span class="keyword">in</span> result, <span class="string">f&quot;<span class="subst">&#123;value1&#125;</span> 在 <span class="subst">&#123;key&#125;</span> 的结果中，预期不在&quot;</span></span><br><span class="line">            <span class="keyword">except</span> AssertionError <span class="keyword">as</span> e:</span><br><span class="line">                <span class="comment"># 提供更详细的错误信息</span></span><br><span class="line">                <span class="keyword">raise</span> AssertionError(<span class="string">f&quot;在处理 <span class="subst">&#123;key&#125;</span> 时失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                <span class="comment"># 处理其他潜在异常</span></span><br><span class="line">                <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;在查询 <span class="subst">&#123;key&#125;</span> 时发生错误: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3、封装设置变量的方法"><a href="#2-3、封装设置变量的方法" class="headerlink" title="2.3、封装设置变量的方法"></a>2.3、封装设置变量的方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">set_variable</span>(<span class="params">step_jsonpath: <span class="built_in">dict</span>, step_body: <span class="built_in">dict</span>, variable: <span class="built_in">dict</span>=VARIABLE</span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    提取变量并更新给定的变量字典</span></span><br><span class="line"><span class="string">    :param step_jsonpath: 包含变量名和对应JSON路径的字典</span></span><br><span class="line"><span class="string">    :param step_body: 待提取变量的JSON结构体</span></span><br><span class="line"><span class="string">    :param variable: 用于存储提取变量的字典</span></span><br><span class="line"><span class="string">    :return: 更新后的变量字典</span></span><br><span class="line"><span class="string">    :raises ValueError: 当step_jsonpath或step_body的格式不正确时</span></span><br><span class="line"><span class="string">    :raises IndexError: 当jsonpath查询结果为空列表且尝试访问第一个元素时</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 输入验证</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(step_jsonpath, <span class="built_in">dict</span>):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;step_jsonpath must be a dictionary&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(step_body, <span class="built_in">dict</span>):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;step_body must be a dictionary&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(variable, <span class="built_in">dict</span>):</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;variable must be a dictionary&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 更新变量字典</span></span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> step_jsonpath.items():</span><br><span class="line">            <span class="comment"># jsonpath查询并更新变量</span></span><br><span class="line">            result = jsonpath.jsonpath(step_body, value)</span><br><span class="line">            <span class="keyword">if</span> result:</span><br><span class="line">                variable[key] = result[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 如果查询结果为空，可以考虑记录日志、抛出异常或其他处理方式</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;Warning: JSON path &#x27;<span class="subst">&#123;value&#125;</span>&#x27; did not match any value.&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;JSON path &#x27;<span class="subst">&#123;value&#125;</span>&#x27; error.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> variable</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在send_request方法中来尝试断言并保存变量</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">send_request</span>(<span class="params">case_obj: <span class="string">&#x27;CaseInfo&#x27;</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    发送请求</span></span><br><span class="line"><span class="string">    :param case_obj:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> case_obj.step_list:</span><br><span class="line">        <span class="built_in">print</span>()<span class="comment"># 遍历步骤列表发送多个请求</span></span><br><span class="line">        <span class="built_in">print</span>(step)</span><br><span class="line">        <span class="comment"># 根据请求方法发送不同body体</span></span><br><span class="line">        resp = requests.request(method=step.step_method, url=HOST+step.step_url, headers=step.step_header, **step.step_body)</span><br><span class="line">        <span class="comment"># 断言jsonpath</span></span><br><span class="line">        assert_json_path(resp.json(), step.step_assert)</span><br><span class="line">        <span class="comment"># 提取变量</span></span><br><span class="line">        <span class="built_in">print</span>(set_variable(step.step_jsonpath, resp.json(), VARIABLE))</span><br><span class="line">        <span class="keyword">return</span> resp</span><br></pre></td></tr></table></figure>
+<p>简单跑一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestCase</span>:</span><br><span class="line"><span class="meta">    @pytest.mark.parametrize(<span class="params"><span class="string">&quot;case_obj&quot;</span>, create_case_object(<span class="params"></span>)</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_case</span>(<span class="params">self, case_obj</span>):</span><br><span class="line">        resp=send_request(case_obj)</span><br><span class="line">        <span class="built_in">print</span>(resp)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>得到结果：<br>步骤名称:登录,请求地址:&#x2F;login,请求方法:POST,请求头:None,请求体:{‘json’: {‘username’: ‘admin’, ‘password’: ‘admin123’}},JSON路径:{‘token’: ‘$.token’},断言:{‘$.token’: {‘is_not_null’: None}, ‘$.code’: {‘eq’: 1}, ‘$.message’: {‘eq’: ‘登录成功’}},SQL:{‘select’: None}<br>{‘token’: ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODU5MzE0NH0.jSa529DvdS929Ig9Z7PfW4ZQLVDxC42SC7lprTB5eW8’}<br>{‘code’: 1, ‘message’: ‘登录成功’, ‘token’: ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODU5MzE0NH0.jSa529DvdS929Ig9Z7PfW4ZQLVDxC42SC7lprTB5eW8’}<br>可以看到已经断言成功了，并且保存了token，后续就可以在请求头中使用了</p>
+</blockquote>
+
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>本文链接：</strong><a href="https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">https://xiamu9527.cn/2024/06/16/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="../../../../categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+      
+      
+        <a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E6%8E%A5%E5%8F%A3/" rel="tag"> 接口 </a><a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E6%B5%8B%E8%AF%95/" rel="tag"> 测试 </a><a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"> 自动化测试 </a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="../../13/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2024 - 2024 刘辉<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="../../../../js/mdui.js"></script>
+<script src="../../../../js/script.js"></script>
+
+</body>
+</html>
