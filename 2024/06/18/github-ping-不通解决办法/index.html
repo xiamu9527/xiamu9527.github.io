@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>github ping 不通解决办法 | 刘辉的博客</title>
+
+  <link rel="shortcut icon" href="../../../../images/favicon.png">
+  <link rel="alternate" href="../../../../atom.xml" title="刘辉的博客" type="application/atom+xml">
+  <meta name="description" content="Git 报错:ssh: connect to host ssh.github.com port 22: Connection timed out  ssh: connect to host ssh.github.com port 22: Connection timed outfatal: Could not read from remote repository. Please make sur">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github ping 不通解决办法">
+<meta property="og:url" content="https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
+<meta property="og:site_name" content="刘辉的博客">
+<meta property="og:description" content="Git 报错:ssh: connect to host ssh.github.com port 22: Connection timed out  ssh: connect to host ssh.github.com port 22: Connection timed outfatal: Could not read from remote repository. Please make sur">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618161620475.png">
+<meta property="og:image" content="https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618162052361.png">
+<meta property="og:image" content="https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618162114772.png">
+<meta property="article:published_time" content="2024-06-18T08:14:50.000Z">
+<meta property="article:modified_time" content="2024-06-18T08:21:20.735Z">
+<meta property="article:author" content="刘辉">
+<meta property="article:tag" content="其他">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618161620475.png">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content=",其他">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="刘辉的博客">
+  <meta name="msapplication-starturl" content="https://xiamu9527.cn">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="刘辉的博客">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="../../../../images/favicon.png">
+
+  
+    <meta property="article:published_time" content="Tue Jun 18 2024 16:14:50 GMT+0800">
+    <meta property="article:modified_time" content="Tue Jun 18 2024 16:21:20 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="https://xiamu9527.cn">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="../../../../css/mdui.css">
+<link rel="stylesheet" href="../../../../css/style.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="../../../../index.html" class="mdui-typo-headline">刘辉的博客</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="../../../../atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="../../../../search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="../../../../images/banner.png" style="height: 160px;">
+    <img src="../../../../images/avatar.jpeg" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">刘辉</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:xiamu9527@outlook.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'xiamu9527@outlook.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="../../../../index.html" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../../../../archives/2024/06/">六月 2024<span class="mdui-ripple sidebar_archives-count">6</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../../../../categories/%E5%BC%80%E5%8F%91/">开发<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../../../../categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试<span class="mdui-ripple sidebar_archives-count">3</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/Flask/" rel="tag"> Flask <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/Web/" rel="tag"> Web <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E5%90%8E%E7%AB%AF/" rel="tag"> 后端 <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E6%8E%A5%E5%8F%A3/" rel="tag"> 接口 <span class="mdui-ripple sidebar_archives-none-count">3</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E6%B5%8B%E8%AF%95/" rel="tag"> 测试 <span class="mdui-ripple sidebar_archives-none-count">3</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"> 自动化测试 <span class="mdui-ripple sidebar_archives-none-count">3</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E5%85%B6%E4%BB%96/" rel="tag">其他<span class="mdui-ripple sidebar_archives-none-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="../../../../about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-18.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">github ping 不通解决办法</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2024-06-18 / <i class="iconfont">&#xe601;</i> 刘辉</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEKElEQVR42u3aS47bQAwFQN//0sk2QGLlPVIe2O3q1SCQ5FYpAJufxy8rWA8EmDBhwoQJk4UJEyZMb8/0iNezu/7xA5f3Pt3WH1de35U8+e+n1e+ICRMmTJgOYspfIId4ttH2t/KdXF9TvyMmTJgwYTqO6dnL58G1PRzkd+Xh/PpXirswYcKECROmIFnNn5kcI9oPgwkTJkyYMG2YEqB94TVPoe/9zJgwYcKE6TymtjXYNho3uPlnawvHmDBhwoTpG5hmJdTP+vtH55swYcKECdPbMLUrD71t07Ftl7aN1fpNMWHChAnTEUyboZzXFXb35eM9KCZMmDBhOoNpVqJtC6xFEzEuEM8Ku3mLFBMmTJgwncQ0axkmI6T5kWLWyLy3VI0JEyZMmM5mylGur3l2/fW/3xzOyxFVTJgwYcL0DUxtaE/C6r7ZmaTHs9Lwf56JCRMmTJgOYkqC5XUY3h8U8pdJDhP5Nat2JiZMmDBh+kCm2d+bcu2sQPy4dWHChAkTpu9h2hdY28LxJglPPsCs1IsJEyZMmM5gmgX+NsDnCWfejGzHj+r/FpgwYcKE6TimWTOypWnbinmJ+a6PgQkTJkyYTmK6K+1sm533jgrlO8kXJkyYMGE6iWkz7PKKgZ58h8kzh0VqTJgwYcJ0BFOSxLYhvN10ewjYjwFFiTEmTJgwYfoCpvZYkAfdpJibl3Rn40d1LRwTJkyYMH0g075Z2BZ8ZwnqvUeKqLGKCRMmTJgOYnrFAM1dAbtNv/MDDSZMmDBhwtSG29cNAxUDN6MnR6kvJkyYMGE6jmlTft2nzbOBm/bYgQkTJkyYzmZqfzJJO2cEm6R6P0I0HNzBhAkTJkxvz5SE7Tycz8LzvoichP/6LkyYMGHCdBxTG2JnDcXkY2zakAl9tBNMmDBhwnQE0/XrtUM5CVBbwN23PIflaUyYMGHCdARTHrxn4X+Wjrbt1X1jta4QYMKECROmD2HaHAjya9o0tW1etoeM6LiDCRMmTJiOYEpoEspZs/MVR41ZU3bY9cWECRMmTB/IlPxwvom7Ssl54ppz31whwIQJEyZMb8zUHhFa0PzY0eK2H6xI6TFhwoQJ00FM7UDMniAJ9vlYzzC5vd4bJkyYMGE6gmnzM5vCazJyuhmBbUdao64vJkyYMGH6QKZ21eMvN5Vo943Mlg8TJkyYMJ3B1AbpNgVNkuHNkOtszKhuZ2LChAkTpg9nmm0lPygUTcTLT5InzO2BABMmTJgwfQNTG1A3qezshdtWa1vqxYQJEyZMmPKhzxw0L+zWr1oeFDBhwoQJE6Z8o+1oTjtkkx8vkutfciDAhAkTJkxvxpQP67Spb/4Z2gbkLORHnxkTJkyYMB3E1IbSBLE9OrRt0TzAt2+ECRMmTJhOYrKiA4GFCRMmTJgwYbIwYcL0Lus37sFeLc0R6hYAAAAASUVORK5CYII=">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=github ping 不通解决办法&url=https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html&pic=https://xiamu9527.cn../../../../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=github ping 不通解决办法&url=https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html&via=刘辉" target="_blank" class="mdui-ripple">分享到Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html" target="_blank" class="mdui-ripple">分享到Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html" target="_blank" class="mdui-ripple">分享到Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html&title=github ping 不通解决办法" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=刘辉的博客&title=github ping 不通解决办法&summary=&pics=https://xiamu9527.cn../../../../images/favicon.png&url=https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html" target="_blank" class="mdui-ripple">分享到QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html&text=github ping 不通解决办法" target="_blank" class="mdui-ripple">分享到Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>Git 报错:ssh: connect to host ssh.github.com port 22: Connection timed out</p>
+<blockquote>
+<p>ssh: connect to host ssh.github.com port 22: Connection timed out<br>fatal: Could not read from remote repository.</p>
+<p>Please make sure you have the correct access rights<br>and the repository exists.<br>FATAL Something’s wrong. Maybe you can find the solution here: <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">https://hexo.io/docs/troubleshooting.html</a></p>
+</blockquote>
+<p>在Git 中ping github.com超时Request timed out.</p>
+<p><img src="/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618161620475.png" alt="image-20240618161620475"></p>
+<p>打开文件夹</p>
+<blockquote>
+<p>C:\Windows\System32\drivers\etc</p>
+</blockquote>
+<p>找到hosts文件，推荐用Notepad++打开，在最后加上两行github的IP</p>
+<p>如果不能修改，右击hosts文件——&gt;属性 -&gt;安全-&gt;编辑-&gt;修改</p>
+<p>增加两行代码</p>
+<blockquote>
+<p>140.82.112.3 github.com<br>151.101.88.249 github.global.ssl.fastly.net</p>
+</blockquote>
+<p>可以通过github的IP地址查询网站<a target="_blank" rel="noopener" href="https://www.ipaddress.com查看github相关ip/">https://www.ipaddress.com查看github相关IP</a></p>
+<p>通过这个网址查询所得的IP地址是自己可以访问到的，不像之前网上很多博客上写的那两行代码，可能只适合别人，自己电脑访问却访问不了。</p>
+<p>输入github.com,获得对应IP地址<br>输入github.global.ssl.fastly.net,获得对应IP地址</p>
+<p><img src="/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618162052361.png" alt="image-20240618162052361"></p>
+<p>问题解决</p>
+<p><img src="/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618162114772.png" alt="image-20240618162114772"></p>
+
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>本文链接：</strong><a href="https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">https://xiamu9527.cn/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+      
+        <a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="../%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2024 - 2024 刘辉<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="../../../../js/mdui.js"></script>
+<script src="../../../../js/script.js"></script>
+
+</body>
+</html>

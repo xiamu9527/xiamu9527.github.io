@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>github ping 不通解决办法</title>
+      <link href="/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html"/>
+      <url>/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html</url>
+      
+        <content type="html"><![CDATA[<p>Git 报错:ssh: connect to host ssh.github.com port 22: Connection timed out</p><blockquote><p>ssh: connect to host ssh.github.com port 22: Connection timed out<br>fatal: Could not read from remote repository.</p><p>Please make sure you have the correct access rights<br>and the repository exists.<br>FATAL Something’s wrong. Maybe you can find the solution here: <a href="https://hexo.io/docs/troubleshooting.html">https://hexo.io/docs/troubleshooting.html</a></p></blockquote><p>在Git 中ping github.com超时Request timed out.</p><p><img src="/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618161620475.png" alt="image-20240618161620475"></p><p>打开文件夹</p><blockquote><p>C:\Windows\System32\drivers\etc</p></blockquote><p>找到hosts文件，推荐用Notepad++打开，在最后加上两行github的IP</p><p>如果不能修改，右击hosts文件——&gt;属性 -&gt;安全-&gt;编辑-&gt;修改</p><p>增加两行代码</p><blockquote><p>140.82.112.3 github.com<br>151.101.88.249 github.global.ssl.fastly.net</p></blockquote><p>可以通过github的IP地址查询网站<a href="https://www.ipaddress.com查看github相关ip/">https://www.ipaddress.com查看github相关IP</a></p><p>通过这个网址查询所得的IP地址是自己可以访问到的，不像之前网上很多博客上写的那两行代码，可能只适合别人，自己电脑访问却访问不了。</p><p>输入github.com,获得对应IP地址<br>输入github.global.ssl.fastly.net,获得对应IP地址</p><p><img src="/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618162052361.png" alt="image-20240618162052361"></p><p>问题解决</p><p><img src="/2024/06/18/github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index/image-20240618162114772.png" alt="image-20240618162114772"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 其他 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>接口自动化框架搭建（三）</title>
       <link href="/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%89%EF%BC%89/index.html"/>
       <url>/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%89%EF%BC%89/index.html</url>
