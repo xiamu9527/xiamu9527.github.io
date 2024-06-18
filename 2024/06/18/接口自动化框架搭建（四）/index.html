@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>接口自动化框架搭建（四） | 刘辉的博客</title>
+
+  <link rel="shortcut icon" href="../../../../images/favicon.png">
+  <link rel="alternate" href="../../../../atom.xml" title="刘辉的博客" type="application/atom+xml">
+  <meta name="description" content="完成数据库操作后我们尝试获取case_file文件下所有的case文件并读取内容，做数据驱动 新增加一个函数，用来获取case_file文件下所有的case文件的绝对路径，并返回一个列表 1234567891011121314151617181920212223def read_yaml_files_from_folder(folder_path):    &quot;&quot;&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="接口自动化框架搭建（四）">
+<meta property="og:url" content="https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:site_name" content="刘辉的博客">
+<meta property="og:description" content="完成数据库操作后我们尝试获取case_file文件下所有的case文件并读取内容，做数据驱动 新增加一个函数，用来获取case_file文件下所有的case文件的绝对路径，并返回一个列表 1234567891011121314151617181920212223def read_yaml_files_from_folder(folder_path):    &quot;&quot;&quot;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-18T08:32:11.000Z">
+<meta property="article:modified_time" content="2024-06-18T09:45:56.118Z">
+<meta property="article:author" content="刘辉">
+<meta property="article:tag" content=" 测试 ">
+<meta property="article:tag" content=" 自动化测试 ">
+<meta property="article:tag" content=" 接口 ">
+<meta name="twitter:card" content="summary">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content=", 测试 , 自动化测试 , 接口 ">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="刘辉的博客">
+  <meta name="msapplication-starturl" content="https://xiamu9527.cn">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="刘辉的博客">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="../../../../images/favicon.png">
+
+  
+    <meta property="article:published_time" content="Tue Jun 18 2024 16:32:11 GMT+0800">
+    <meta property="article:modified_time" content="Tue Jun 18 2024 17:45:56 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="https://xiamu9527.cn">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="../../../../css/mdui.css">
+<link rel="stylesheet" href="../../../../css/style.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="../../../../index.html" class="mdui-typo-headline">刘辉的博客</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="../../../../atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="../../../../search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="../../../../images/banner.png" style="height: 160px;">
+    <img src="../../../../images/avatar.jpeg" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">刘辉</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:xiamu9527@outlook.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'xiamu9527@outlook.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="../../../../index.html" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../../../../archives/2024/06/">六月 2024<span class="mdui-ripple sidebar_archives-count">8</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../../../../categories/%E5%BC%80%E5%8F%91/">开发<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../../../../categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/Flask/" rel="tag"> Flask <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/Web/" rel="tag"> Web <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E5%90%8E%E7%AB%AF/" rel="tag"> 后端 <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E6%8E%A5%E5%8F%A3/" rel="tag"> 接口 <span class="mdui-ripple sidebar_archives-none-count">4</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E6%B5%8B%E8%AF%95/" rel="tag"> 测试 <span class="mdui-ripple sidebar_archives-none-count">4</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"> 自动化测试 <span class="mdui-ripple sidebar_archives-none-count">4</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../../../../tags/%E5%85%B6%E4%BB%96/" rel="tag">其他<span class="mdui-ripple sidebar_archives-none-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="../../../../about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">Github</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-18.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">接口自动化框架搭建（四）</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2024-06-18 / <i class="iconfont">&#xe601;</i> 刘辉</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAE20lEQVR42u3aQW7cQAwEQP//0841gJN1N0kZdlJzWsSSRioFEKc5b+/GYrwhwIcPHz4DHz58+Ax8+H4I31s8fj/+9e8/TBlf/+NZf/v98azNMfm94cOHDx8+fHu+Tz7VwZT5We1fk3tI7j+Z5fVT4MOHDx8+fLd8s2Ll9VlRKRAXPe09z17hJy8SHz58+PDh+0K+ItQOypq8ZEnKo9mV8eHDhw8fvu/MlxQoLVZb4rRHzqIQfPjw4cOH72m+IrAOypp2uZ63yduGfV70PN7rwIcPHz58+B7YoPazfn+7/X348OHDh++f5puNvO2dRwmbjXFtNLB6dnz48OHDh2/B1wbiycavWQN7NmZMs5Y5Pnz48OHDd8uXNLxflx05cduSn8UZm+uf7TLAhw8fPnz4YoJkYX8VIly12/Mrz8IIfPjw4cOHb8OXR+ezAD1hzZvxecGxKcvw4cOHDx++p/lmC+82oM+DgPb15C8sv098+PDhw4fvCb6kpJhBXzXgk4fPI4BZGIEPHz58+PA9x9cuvJ9rWidBxqYwakHx4cOHDx++W7784523t9vG9qzgaBv8bcSPDx8+fPjwXfElI3/I2ZF5g3wWQMzKpigywIcPHz58+EZ8+Sd8FsTnhcX+Htpyqm454MOHDx8+fGu+vJiYHT8D2m8sy0ui4lnw4cOHDx++I74cq9001i7LN9eZFTrDNjk+fPjw4cP3AF/bls6j8CdC/H30gA8fPnz48D3HN9vU1bax27hhQzx7VcWd48OHDx8+fGu+/fSzBnY+1yY4mM1VFC748OHDhw/faM3bLqST4H52iwn6+2js58KHDx8+fPj2fHk00Ebzbet9M9dtA6CODPDhw4cPH76Ab/PA+6g9LyaSImMTQyQhBT58+PDhw3fFlzMlcXy7sG/bA7Ni6GoWfPjw4cOHb8O3WULnkUG+dM+j/3a7Wx6UfPIfBR8+fPjw4Tvl22zeyhf2eTM7f22zMqUtv/Dhw4cPH75bvhZ303RvZ2lb4G00HxHjw4cPHz58D/DtF963sUIb9+9xz8J6fPjw4cOHb100zAqRWRCf31uCmzz1J214fPjw4cOHb8E3iwbyRfimsJi1EDZN/bpNjg8fPnz48C34os92QJC3sWdYbdt+tkEtigzw4cOHDx++ki8pTfblSM6RlDW3xdDBBjV8+PDhw4dvwdeWFHnrenZWXjbNmPKr4cOHDx8+fFd8eeu6/etVENAWKO2RRdyADx8+fPjwrfmSk/NYIafJf89aC23DIJodHz58+PDhW/BtmuLJlrU8CGgb2JuXl/97scsAHz58+PDhG21Q2xQx7dax5AVs4oBN8PHXl40PHz58+PAt+GaBdRuvbxrq7da0HGXYQsCHDx8+fPgWfLNiIikybq+Zs85KqGIWfPjw4cOHb8F38CGPj9y3zHOUljhv1ePDhw8fPnx7vrbh3YbgbZGRFyKzIGMVi+DDhw8fPnxHfHkInr+ATVw+Cws2MUQUcODDhw8fPnxfzrffxHa7pWwTXrSFDj58+PDhw/eVfC3i64ImJ7uNM2ZteHz48OHDh++WL7nFzc3lEUMeWLyGmLUQhoULPnz48OHDF/NtNqi1oUAe389o9u38L93fhw8fPnz4/jM+ox348OHDh8/Ahw8fPgMfvm88fgHd62wqnjflFAAAAABJRU5ErkJggg==">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=接口自动化框架搭建（四）&url=https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html&pic=https://xiamu9527.cn../../../../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=接口自动化框架搭建（四）&url=https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html&via=刘辉" target="_blank" class="mdui-ripple">分享到Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html&title=接口自动化框架搭建（四）" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=刘辉的博客&title=接口自动化框架搭建（四）&summary=&pics=https://xiamu9527.cn../../../../images/favicon.png&url=https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html" target="_blank" class="mdui-ripple">分享到QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html&text=接口自动化框架搭建（四）" target="_blank" class="mdui-ripple">分享到Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>完成数据库操作后我们尝试获取case_file文件下所有的case文件并读取内容，做数据驱动</p>
+<p>新增加一个函数，用来获取case_file文件下所有的case文件的绝对路径，并返回一个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">read_yaml_files_from_folder</span>(<span class="params">folder_path</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    遍历指定文件夹下所有的YAML文件并返回它们的路径列表。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    folder_path (str): 要遍历的文件夹路径。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    list: 包含文件夹内所有YAML文件路径的列表。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    yaml_files = []</span><br><span class="line">    <span class="comment"># 确保传入的路径以斜杠结尾，以便正确拼接</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> folder_path.endswith(os.path.sep):</span><br><span class="line">        folder_path += os.path.sep</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历文件夹</span></span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(folder_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="comment"># 检查文件是否为.yaml或.yml结尾</span></span><br><span class="line">            <span class="keyword">if</span> file.endswith(<span class="string">&#x27;.yaml&#x27;</span>) <span class="keyword">or</span> file.endswith(<span class="string">&#x27;.yml&#x27;</span>):</span><br><span class="line">                yaml_files.append(os.path.join(root, file))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> yaml_files</span><br></pre></td></tr></table></figure>
+<p>再稍微修改一下之前的create_case_object()函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_case_object</span>() -&gt; <span class="built_in">list</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    创建用例对象</span></span><br><span class="line"><span class="string">    :return:对象列表</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    case_file_path_list = read_yaml_files_from_folder(CASE_PATH)</span><br><span class="line">    case_list = []</span><br><span class="line">    <span class="keyword">for</span> file_path <span class="keyword">in</span> case_file_path_list:</span><br><span class="line">        case_data = load_yaml_file(file_path)</span><br><span class="line">        <span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">in</span> case_data:</span><br><span class="line">            case_obj = CaseInfo(<span class="keyword">case</span>[<span class="string">&#x27;case_id&#x27;</span>], <span class="keyword">case</span>[<span class="string">&#x27;name&#x27;</span>], <span class="keyword">case</span>[<span class="string">&#x27;steps&#x27;</span>], <span class="keyword">case</span>[<span class="string">&#x27;clear_data&#x27;</span>])</span><br><span class="line">            case_list.append(case_obj)</span><br><span class="line">    <span class="keyword">return</span> case_list</span><br></pre></td></tr></table></figure>
+<p>现在我们可以多编写几个测试用例文件尝试一下<br>用户管理.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用例文件的配置模板</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">case_id:</span> <span class="number">1</span> <span class="comment"># 测试用例id</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">登录成功</span> <span class="comment"># 测试用例名称</span></span><br><span class="line">  <span class="attr">clear_data:</span> <span class="comment"># 测试用例清理数据</span></span><br><span class="line"> <span class="comment"># delete: delete from user where username = &#x27;test1&#x27; # 测试用例清理sql</span></span><br><span class="line">  <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">step_name:</span> <span class="string">登录</span> <span class="comment">#步骤名称</span></span><br><span class="line">      <span class="attr">step_url:</span> <span class="string">/login</span> <span class="comment"># 步骤url</span></span><br><span class="line">      <span class="attr">step_method:</span> <span class="string">POST</span> <span class="comment"># 步骤请求方法</span></span><br><span class="line">      <span class="attr">step_header:</span>  <span class="comment"># 步骤请求头</span></span><br><span class="line">      <span class="attr">step_body:</span> <span class="comment">#步骤请求体</span></span><br><span class="line">        <span class="attr">json:</span> <span class="comment"># 步骤请求体格式</span></span><br><span class="line">          <span class="attr">username:</span> <span class="string">admin</span> <span class="comment"># 步骤请求体参数</span></span><br><span class="line">          <span class="attr">password:</span> <span class="string">admin123</span></span><br><span class="line">      <span class="attr">step_jsonpath:</span></span><br><span class="line">        <span class="attr">token:</span> <span class="string">$.token</span> <span class="comment">#变量名及变量提取表达式</span></span><br><span class="line">      <span class="attr">step_assert:</span> <span class="comment"># 步骤断言</span></span><br><span class="line">        <span class="string">$.token:</span></span><br><span class="line">          <span class="attr">is_not_null:</span>  <span class="comment"># 断言表达式 is_not_null，eq,in</span></span><br><span class="line">        <span class="string">$.code:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="number">1</span></span><br><span class="line">        <span class="string">$.message:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="string">登录成功</span></span><br><span class="line">      <span class="attr">step_sql:</span></span><br><span class="line"><span class="comment">#        select: select * from table where name = &#x27;XXX&#x27; # 查询有值则断言成功</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="attr">case_id:</span> <span class="number">2</span> <span class="comment"># 测试用例id</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">登录成功并添加新用户</span> <span class="comment"># 测试用例名称</span></span><br><span class="line">  <span class="attr">clear_data:</span> <span class="comment"># 测试用例清理数据</span></span><br><span class="line">    <span class="attr">delete:</span> <span class="string">delete</span> <span class="string">from</span> <span class="string">user</span> <span class="string">where</span> <span class="string">username</span> <span class="string">=</span> <span class="string">&#x27;test1&#x27;</span></span><br><span class="line">    <span class="attr">delete1:</span> <span class="string">delete</span> <span class="string">from</span> <span class="string">userinfo</span> <span class="string">where</span> <span class="string">username</span> <span class="string">=</span> <span class="string">&#x27;test1&#x27;</span>  <span class="comment"># delete from table where id = XXX # 测试用例清理sql</span></span><br><span class="line">  <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">step_name:</span> <span class="string">登录</span> <span class="comment">#步骤名称</span></span><br><span class="line">      <span class="attr">step_url:</span> <span class="string">/login</span> <span class="comment"># 步骤url</span></span><br><span class="line">      <span class="attr">step_method:</span> <span class="string">POST</span> <span class="comment"># 步骤请求方法</span></span><br><span class="line">      <span class="attr">step_header:</span>  <span class="comment"># 步骤请求头</span></span><br><span class="line">      <span class="attr">step_body:</span> <span class="comment">#步骤请求体</span></span><br><span class="line">        <span class="attr">json:</span> <span class="comment"># 步骤请求体格式</span></span><br><span class="line">          <span class="attr">username:</span> <span class="string">admin</span> <span class="comment"># 步骤请求体参数</span></span><br><span class="line">          <span class="attr">password:</span> <span class="string">admin123</span></span><br><span class="line">      <span class="attr">step_jsonpath:</span></span><br><span class="line">        <span class="attr">token:</span> <span class="string">$.token</span> <span class="comment">#变量名及变量提取表达式</span></span><br><span class="line">      <span class="attr">step_assert:</span> <span class="comment"># 步骤断言</span></span><br><span class="line">        <span class="string">$.token:</span></span><br><span class="line">          <span class="attr">is_not_null:</span>  <span class="comment"># 断言表达式</span></span><br><span class="line">        <span class="string">$.code:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="number">1</span></span><br><span class="line">        <span class="string">$.message:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="string">登录成功</span></span><br><span class="line">      <span class="attr">step_sql:</span></span><br><span class="line"><span class="comment">#        select:  # select * from table where name = &#x27;XXX&#x27; # 步骤sql</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">step_name:</span> <span class="string">注册</span></span><br><span class="line">      <span class="attr">step_url:</span> <span class="string">/register</span></span><br><span class="line">      <span class="attr">step_method:</span> <span class="string">POST</span></span><br><span class="line">      <span class="attr">step_header:</span></span><br><span class="line">        <span class="attr">Authorization:</span> <span class="string">&lt;token&gt;</span></span><br><span class="line">      <span class="attr">step_body:</span></span><br><span class="line">        <span class="attr">json:</span></span><br><span class="line">          <span class="attr">username:</span> <span class="string">test1</span></span><br><span class="line">          <span class="attr">password:</span> <span class="string">test123</span></span><br><span class="line">          <span class="attr">email:</span> <span class="string">test1@qq.com</span></span><br><span class="line">      <span class="attr">step_jsonpath:</span> <span class="comment">#变量名及变量提取表达式</span></span><br><span class="line">      <span class="attr">step_assert:</span> <span class="comment"># 步骤断言</span></span><br><span class="line">        <span class="string">$.message:</span></span><br><span class="line">          <span class="attr">is_not_null:</span> <span class="comment"># 断言表达式</span></span><br><span class="line">      <span class="attr">step_sql:</span></span><br><span class="line">        <span class="attr">select:</span> <span class="string">select</span> <span class="string">*</span> <span class="string">from</span> <span class="string">user</span> <span class="string">where</span> <span class="string">username</span> <span class="string">=</span> <span class="string">&#x27;test1&#x27;</span> <span class="comment"># 步骤sql</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>用户信息管理.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用例文件的配置模板</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">case_id:</span> <span class="number">3</span> <span class="comment"># 测试用例id</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">查看用户列表</span> <span class="comment"># 测试用例名称</span></span><br><span class="line">  <span class="attr">clear_data:</span> <span class="comment"># 测试用例清理数据</span></span><br><span class="line"> <span class="comment"># delete: delete from user where username = &#x27;test1&#x27; # 测试用例清理sql</span></span><br><span class="line">  <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">step_name:</span> <span class="string">登录</span> <span class="comment">#步骤名称</span></span><br><span class="line">      <span class="attr">step_url:</span> <span class="string">/login</span> <span class="comment"># 步骤url</span></span><br><span class="line">      <span class="attr">step_method:</span> <span class="string">POST</span> <span class="comment"># 步骤请求方法</span></span><br><span class="line">      <span class="attr">step_header:</span>  <span class="comment"># 步骤请求头</span></span><br><span class="line">      <span class="attr">step_body:</span> <span class="comment">#步骤请求体</span></span><br><span class="line">        <span class="attr">json:</span> <span class="comment"># 步骤请求体格式</span></span><br><span class="line">          <span class="attr">username:</span> <span class="string">admin</span> <span class="comment"># 步骤请求体参数</span></span><br><span class="line">          <span class="attr">password:</span> <span class="string">admin123</span></span><br><span class="line">      <span class="attr">step_jsonpath:</span></span><br><span class="line">        <span class="attr">token:</span> <span class="string">$.token</span> <span class="comment">#变量名及变量提取表达式</span></span><br><span class="line">      <span class="attr">step_assert:</span> <span class="comment"># 步骤断言</span></span><br><span class="line">        <span class="string">$.token:</span></span><br><span class="line">          <span class="attr">is_not_null:</span>  <span class="comment"># 断言表达式 is_not_null，eq,in</span></span><br><span class="line">        <span class="string">$.code:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="number">1</span></span><br><span class="line">        <span class="string">$.message:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="string">登录成功</span></span><br><span class="line">      <span class="attr">step_sql:</span></span><br><span class="line"><span class="comment">#        select: select * from table where name = &#x27;XXX&#x27; # 查询有值则断言成功</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">step_name:</span> <span class="string">获取用户列表</span> <span class="comment">#步骤名称</span></span><br><span class="line">      <span class="attr">step_url:</span> <span class="string">/api/user/list</span> <span class="comment"># 步骤url</span></span><br><span class="line">      <span class="attr">step_method:</span> <span class="string">GET</span> <span class="comment"># 步骤请求方法</span></span><br><span class="line">      <span class="attr">step_header:</span></span><br><span class="line">        <span class="attr">Authorization:</span> <span class="string">&lt;token&gt;</span> <span class="comment"># 步骤请求头</span></span><br><span class="line">      <span class="attr">step_body:</span> <span class="comment">#步骤请求体</span></span><br><span class="line">      <span class="attr">step_jsonpath:</span></span><br><span class="line">        <span class="attr">token:</span> <span class="string">$.token</span> <span class="comment">#变量名及变量提取表达式</span></span><br><span class="line">      <span class="attr">step_assert:</span> <span class="comment"># 步骤断言</span></span><br><span class="line">        <span class="string">$.message:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="string">请求成功</span></span><br><span class="line">      <span class="attr">step_sql:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="attr">case_id:</span> <span class="number">4</span> <span class="comment"># 测试用例id</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">更新当前用户信息</span> <span class="comment"># 测试用例名称</span></span><br><span class="line">  <span class="attr">clear_data:</span></span><br><span class="line">   <span class="attr">update:</span> <span class="string">update</span> <span class="string">userinfo</span> <span class="string">set</span> <span class="string">email</span> <span class="string">=</span> <span class="string">&#x27;admin@121.com&#x27;</span> <span class="string">where</span> <span class="string">username</span> <span class="string">=</span> <span class="string">&#x27;admin&#x27;</span> <span class="comment"># 测试用例清理数据</span></span><br><span class="line"> <span class="comment"># delete: delete from user where username = &#x27;test1&#x27; # 测试用例清理sql</span></span><br><span class="line">  <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">step_name:</span> <span class="string">登录</span> <span class="comment">#步骤名称</span></span><br><span class="line">      <span class="attr">step_url:</span> <span class="string">/login</span> <span class="comment"># 步骤url</span></span><br><span class="line">      <span class="attr">step_method:</span> <span class="string">POST</span> <span class="comment"># 步骤请求方法</span></span><br><span class="line">      <span class="attr">step_header:</span>  <span class="comment"># 步骤请求头</span></span><br><span class="line">      <span class="attr">step_body:</span> <span class="comment">#步骤请求体</span></span><br><span class="line">        <span class="attr">json:</span> <span class="comment"># 步骤请求体格式</span></span><br><span class="line">          <span class="attr">username:</span> <span class="string">admin</span> <span class="comment"># 步骤请求体参数</span></span><br><span class="line">          <span class="attr">password:</span> <span class="string">admin123</span></span><br><span class="line">      <span class="attr">step_jsonpath:</span></span><br><span class="line">        <span class="attr">token:</span> <span class="string">$.token</span> <span class="comment">#变量名及变量提取表达式</span></span><br><span class="line">      <span class="attr">step_assert:</span> <span class="comment"># 步骤断言</span></span><br><span class="line">        <span class="string">$.token:</span></span><br><span class="line">          <span class="attr">is_not_null:</span>  <span class="comment"># 断言表达式 is_not_null，eq,in</span></span><br><span class="line">        <span class="string">$.code:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="number">1</span></span><br><span class="line">        <span class="string">$.message:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="string">登录成功</span></span><br><span class="line">      <span class="attr">step_sql:</span></span><br><span class="line"><span class="comment">#        select: select * from table where name = &#x27;XXX&#x27; # 查询有值则断言成功</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">step_name:</span> <span class="string">更新当前用户信息</span> <span class="comment">#步骤名称</span></span><br><span class="line">      <span class="attr">step_url:</span> <span class="string">/api/upload</span> <span class="comment"># 步骤url</span></span><br><span class="line">      <span class="attr">step_method:</span> <span class="string">PUT</span> <span class="comment"># 步骤请求方法</span></span><br><span class="line">      <span class="attr">step_header:</span></span><br><span class="line">        <span class="attr">Authorization:</span> <span class="string">&lt;token&gt;</span> <span class="comment"># 步骤请求头</span></span><br><span class="line">      <span class="attr">step_body:</span> <span class="comment">#步骤请求体</span></span><br><span class="line">        <span class="attr">data:</span></span><br><span class="line">          <span class="attr">password:</span> <span class="string">admin123</span></span><br><span class="line">          <span class="attr">email:</span> <span class="string">admin@qq.com</span></span><br><span class="line">      <span class="attr">step_jsonpath:</span></span><br><span class="line">        <span class="attr">token:</span> <span class="string">$.token</span> <span class="comment">#变量名及变量提取表达式</span></span><br><span class="line">      <span class="attr">step_assert:</span> <span class="comment"># 步骤断言</span></span><br><span class="line">        <span class="string">$.message:</span></span><br><span class="line">          <span class="attr">eq:</span> <span class="string">更新成功</span></span><br><span class="line">      <span class="attr">step_sql:</span></span><br><span class="line">        <span class="attr">select:</span> <span class="string">select</span> <span class="string">*</span> <span class="string">from</span> <span class="string">userinfo</span> <span class="string">where</span> <span class="string">email</span> <span class="string">=</span> <span class="string">&#x27;admin@qq.com&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>简单跑一下</p>
+<blockquote>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 4 passed in 0.19s &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>PASSED                      [ 25%]<br>步骤名称:登录,请求地址:&#x2F;login,请求方法:POST,请求头:None,请求体:{‘json’: {‘username’: ‘admin’, ‘password’: ‘admin123’}},JSON路径:{‘token’: ‘$.token’},断言:{‘$.token’: {‘is_not_null’: None}, ‘$.code’: {‘eq’: 1}, ‘$.message’: {‘eq’: ‘登录成功’}},SQL:None<br>响应结果：{‘code’: 1, ‘message’: ‘登录成功’, ‘token’: ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODcwNTMwMX0.yZEKqttGNhn-KICgPac_47xRlvx9K882EVXwYJ99p-8’}<br>步骤名称:获取用户列表,请求地址:&#x2F;api&#x2F;user&#x2F;list,请求方法:GET,请求头:{‘Authorization’: ‘<token>‘},请求体:None,JSON路径:{‘token’: ‘$.token’},断言:{‘$.message’: {‘eq’: ‘请求成功’}},SQL:None<br>Warning: JSON path ‘$.token’ did not match any value.<br>响应结果：{‘data’: [{‘email’: ‘<a href="mailto:&#x61;&#x64;&#109;&#105;&#x6e;&#x40;&#x31;&#50;&#x31;&#46;&#99;&#111;&#109;">&#x61;&#x64;&#109;&#105;&#x6e;&#x40;&#x31;&#50;&#x31;&#46;&#99;&#111;&#109;</a>‘, ‘id’: 1, ‘username’: ‘admin’}, {‘email’: ‘<a href="mailto:&#x75;&#x73;&#x65;&#x72;&#x31;&#x40;&#x65;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#46;&#x63;&#111;&#x6d;">&#x75;&#x73;&#x65;&#x72;&#x31;&#x40;&#x65;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#46;&#x63;&#111;&#x6d;</a>‘, ‘id’: 2, ‘username’: ‘user1’}, {‘email’: ‘<a href="mailto:&#117;&#115;&#x65;&#114;&#50;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;">&#117;&#115;&#x65;&#114;&#50;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a>‘, ‘id’: 3, ‘username’: ‘user2’}], ‘message’: ‘请求成功’}</token></p>
+</blockquote>
+<blockquote>
+<p>PASSED                      [ 50%]<br>步骤名称:登录,请求地址:&#x2F;login,请求方法:POST,请求头:None,请求体:{‘json’: {‘username’: ‘admin’, ‘password’: ‘admin123’}},JSON路径:{‘token’: ‘$.token’},断言:{‘$.token’: {‘is_not_null’: None}, ‘$.code’: {‘eq’: 1}, ‘$.message’: {‘eq’: ‘登录成功’}},SQL:None<br>响应结果：{‘code’: 1, ‘message’: ‘登录成功’, ‘token’: ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODcwNTMwMX0.yZEKqttGNhn-KICgPac_47xRlvx9K882EVXwYJ99p-8’}<br>步骤名称:更新当前用户信息,请求地址:&#x2F;api&#x2F;upload,请求方法:PUT,请求头:{‘Authorization’: ‘<token>‘},请求体:{‘data’: {‘password’: ‘admin123’, ‘email’: ‘<a href="mailto:&#x61;&#100;&#x6d;&#105;&#x6e;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#x61;&#100;&#x6d;&#105;&#x6e;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>‘}},JSON路径:{‘token’: ‘$.token’},断言:{‘$.message’: {‘eq’: ‘更新成功’}},SQL:{‘select’: “select * from userinfo where email &#x3D; ‘<a href="mailto:&#97;&#x64;&#x6d;&#105;&#110;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;">&#97;&#x64;&#x6d;&#105;&#110;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;</a>‘“}<br>Warning: JSON path ‘$.token’ did not match any value.<br>数据库验证结果：[[(1, ‘admin’, ‘<a href="mailto:&#97;&#x64;&#109;&#x69;&#x6e;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#97;&#x64;&#109;&#x69;&#x6e;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;</a>‘)]]<br>响应结果：{‘data’: {‘email’: ‘<a href="mailto:&#97;&#100;&#109;&#x69;&#x6e;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;">&#97;&#100;&#109;&#x69;&#x6e;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;</a>‘, ‘id’: 1, ‘username’: ‘admin’}, ‘message’: ‘更新成功’}</token></p>
+</blockquote>
+<blockquote>
+<p>PASSED                      [ 75%]<br>步骤名称:登录,请求地址:&#x2F;login,请求方法:POST,请求头:None,请求体:{‘json’: {‘username’: ‘admin’, ‘password’: ‘admin123’}},JSON路径:{‘token’: ‘$.token’},断言:{‘$.token’: {‘is_not_null’: None}, ‘$.code’: {‘eq’: 1}, ‘$.message’: {‘eq’: ‘登录成功’}},SQL:None<br>响应结果：{‘code’: 1, ‘message’: ‘登录成功’, ‘token’: ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODcwNTMwMX0.yZEKqttGNhn-KICgPac_47xRlvx9K882EVXwYJ99p-8’}</p>
+</blockquote>
+<blockquote>
+<p>PASSED                      [100%]<br>步骤名称:登录,请求地址:&#x2F;login,请求方法:POST,请求头:None,请求体:{‘json’: {‘username’: ‘admin’, ‘password’: ‘admin123’}},JSON路径:{‘token’: ‘$.token’},断言:{‘$.token’: {‘is_not_null’: None}, ‘$.code’: {‘eq’: 1}, ‘$.message’: {‘eq’: ‘登录成功’}},SQL:None<br>响应结果：{‘code’: 1, ‘message’: ‘登录成功’, ‘token’: ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODcwNTMwMX0.yZEKqttGNhn-KICgPac_47xRlvx9K882EVXwYJ99p-8’}<br>步骤名称:注册,请求地址:&#x2F;register,请求方法:POST,请求头:{‘Authorization’: ‘<token>‘},请求体:{‘json’: {‘username’: ‘test1’, ‘password’: ‘test123’, ‘email’: ‘<a href="mailto:&#x74;&#101;&#115;&#116;&#49;&#64;&#113;&#x71;&#46;&#x63;&#111;&#x6d;">&#x74;&#101;&#115;&#116;&#49;&#64;&#113;&#x71;&#46;&#x63;&#111;&#x6d;</a>‘}},JSON路径:None,断言:{‘$.message’: {‘is_not_null’: None}},SQL:{‘select’: “select * from user where username &#x3D; ‘test1’”}<br>数据库验证结果：[[(4, ‘test1’, ‘test123’)]]<br>响应结果：{‘message’: ‘创建成功’}</token></p>
+</blockquote>
+<p>到了这里想必你也发现了，在每个用例中都需要单独去请求登录接口，我们可以尝试把登录接口抽离出来，并且header可以配置为默认header，如果不在文件中<br>配置则使用这个默认header，这样我们也可以省去很多步骤，下一节继续。</p>
+
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>本文链接：</strong><a href="https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">https://xiamu9527.cn/2024/06/18/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%9B%EF%BC%89/index.html</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="../../../../categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+      
+      
+        <a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E6%8E%A5%E5%8F%A3/" rel="tag"> 接口 </a><a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E6%B5%8B%E8%AF%95/" rel="tag"> 测试 </a><a class="mdui-ripple article_tags-none-link" href="../../../../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"> 自动化测试 </a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="../%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%BA%94%EF%BC%89/index.html">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
+      </a>
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="../github-ping-%E4%B8%8D%E9%80%9A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2024 - 2024 刘辉<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="../../../../js/mdui.js"></script>
+<script src="../../../../js/script.js"></script>
+
+</body>
+</html>
