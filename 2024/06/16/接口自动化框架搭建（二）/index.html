@@ -170,7 +170,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-16.png" style="max-height: 240px;">
+      <img src="/images/random/material-17.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">接口自动化框架搭建（二）</div>
@@ -254,7 +254,7 @@
 <p>步骤名称:登录,请求地址:&#x2F;login,请求方法:POST,请求头:None,请求体:{‘json’: {‘username’: ‘admin’, ‘password’: ‘admin123’}},JSON路径:{‘token’: ‘$.token’},断言:{‘$.token’: {‘is_not_null’: None}, ‘$.code’: {‘eq’: 1}, ‘$.message’: {‘eq’: ‘登录成功’}},SQL:{‘select’: None}<br>{‘code’: 1, ‘message’: ‘登录成功’, ‘token’: ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODYwMzM4NH0.FaPPPEVml1RtwsSZ9-yJmXXF3vgBJM7isIA3UA4XUVA’}</p>
 </blockquote>
 <blockquote>
-<p>步骤名称:查看当前用户信息,请求地址:&#x2F;api&#x2F;user,请求方法:GET,请求头:{‘Authorization’: ‘<token>‘},请求体:None,JSON路径:{‘id’: ‘$.id’},断言:{‘$.username’: {‘is_not_null’: None}},SQL:{‘select’: None}<br>{‘email’: ‘<a href="mailto:&#x61;&#x64;&#x6d;&#x69;&#x6e;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;">&#x61;&#x64;&#x6d;&#x69;&#x6e;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;</a>‘, ‘id’: 0, ‘username’: ‘admin’}</token></p>
+<p>步骤名称:查看当前用户信息,请求地址:&#x2F;api&#x2F;user,请求方法:GET,请求头:{‘Authorization’: ‘<token>‘},请求体:None,JSON路径:{‘id’: ‘$.id’},断言:{‘$.username’: {‘is_not_null’: None}},SQL:{‘select’: None}<br>{‘email’: ‘<a href="mailto:&#97;&#x64;&#109;&#x69;&#110;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#x6d;">&#97;&#x64;&#109;&#x69;&#110;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#x6d;</a>‘, ‘id’: 0, ‘username’: ‘admin’}</token></p>
 </blockquote>
 <p>到这里我们就完成了接口的关联啦，接下来我们需要封装用来操作数据库的类，用来获取数据库中的数据，然后进行断言。</p>
 
