@@ -106,7 +106,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="../archives/2024/06/">六月 2024<span class="mdui-ripple sidebar_archives-count">8</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="../archives/2024/06/">六月 2024<span class="mdui-ripple sidebar_archives-count">9</span></a>
         
       </div>
     </div>
@@ -118,7 +118,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="../categories/%E5%BC%80%E5%8F%91/">开发<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试<span class="mdui-ripple sidebar_archives-count">5</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="../categories/%E5%BC%80%E5%8F%91/">开发<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="../categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试<span class="mdui-ripple sidebar_archives-count">6</span></a>
         
       </div>
     </div>
@@ -130,7 +130,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-none-link" href="../tags/Flask/" rel="tag"> Flask <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/Web/" rel="tag"> Web <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E5%90%8E%E7%AB%AF/" rel="tag"> 后端 <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E6%8E%A5%E5%8F%A3/" rel="tag"> 接口 <span class="mdui-ripple sidebar_archives-none-count">5</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E6%B5%8B%E8%AF%95/" rel="tag"> 测试 <span class="mdui-ripple sidebar_archives-none-count">5</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"> 自动化测试 <span class="mdui-ripple sidebar_archives-none-count">5</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E5%85%B6%E4%BB%96/" rel="tag">其他<span class="mdui-ripple sidebar_archives-none-count">1</span></a>
+        <a class="mdui-ripple sidebar_archives-none-link" href="../tags/Flask/" rel="tag"> Flask <span class="mdui-ripple sidebar_archives-none-count">2</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/Web/" rel="tag"> Web <span class="mdui-ripple sidebar_archives-none-count">2</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E5%85%B6%E4%BB%96/" rel="tag"> 其他 <span class="mdui-ripple sidebar_archives-none-count">1</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E5%90%8E%E7%AB%AF/" rel="tag"> 后端 <span class="mdui-ripple sidebar_archives-none-count">2</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E6%8E%A5%E5%8F%A3/" rel="tag"> 接口 <span class="mdui-ripple sidebar_archives-none-count">6</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E6%B5%8B%E8%AF%95/" rel="tag"> 测试 <span class="mdui-ripple sidebar_archives-none-count">6</span></a><a class="mdui-ripple sidebar_archives-none-link" href="../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"> 自动化测试 <span class="mdui-ripple sidebar_archives-none-count">6</span></a>
         
       </div>
     </div>
@@ -165,7 +165,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-4.png" style="max-height: 240px;">
+      <img src="/images/random/material-3.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">about</div>
@@ -273,6 +273,24 @@
   <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
 
 
+
+  <div id="comment" class="mdui-m-t-5">
+    <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'Ov23liaMztnz4aRi6LpM',
+    clientSecret: 'c25805a0862d3e63821f9529323c4df9a8a42c76',
+    repo: 'xiamu9527.github.io',
+    owner: 'xiamu9527',
+    admin: ['xiamu9527'],
+    id: location.pathname,
+    distractionFreeMode: false
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
 
 
 </main>
