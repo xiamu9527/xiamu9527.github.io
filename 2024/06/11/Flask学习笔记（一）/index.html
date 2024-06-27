@@ -170,7 +170,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-8.png" style="max-height: 240px;">
+      <img src="/images/random/material-9.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">Flask学习笔记（一）</div>
@@ -281,14 +281,22 @@
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 <script>
+    function generateSafeId(pathname) {
+    // 如果路径中包含中文，可以考虑使用一种编码方式，比如将中文转换为拼音或者使用简单的hash
+    // 这里提供一个简单示例，实际情况可能需要更复杂的逻辑处理
+    return pathname.replace(/[\u4e00-\u9fa5]/g, (char) => {
+      return char.charCodeAt(0).toString(16); // 简单示例，将中文字符转为Unicode十六进制表示
+    });
+  }
+
+
   var gitalk = new Gitalk({
     clientID: 'Ov23liaMztnz4aRi6LpM',
     clientSecret: 'c25805a0862d3e63821f9529323c4df9a8a42c76',
     repo: 'xiamu9527.github.io',
     owner: 'xiamu9527',
     admin: ['xiamu9527'],
-//     id: location.pathname,
-    id: '{{ page.title }}'
+    id:  generateSafeId(decodeURIComponent(location.pathname)),
     distractionFreeMode: false
   });
   gitalk.render('gitalk-container');
